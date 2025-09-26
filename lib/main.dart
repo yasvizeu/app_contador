@@ -38,8 +38,12 @@ class _HomePageState extends State<HomePage> {
   int _peopleCount = 0;
   String _message = 'ENTRADA AUTORIZADA';
 
+  int _entrarPressCount = 0;
+  int _sairPressCount = 0;
+
   void _incrementPeople(){
     setState(() {
+      _entrarPressCount++;
       _peopleCount++;
       if (_peopleCount > 10){
         _message = 'ENTRADA PROIBIDA';
@@ -52,10 +56,11 @@ class _HomePageState extends State<HomePage> {
 
   void _decrementPeople(){
     setState(() {
+      _sairPressCount++;
       if (_peopleCount>0){
         _peopleCount--;
       }
-      if (_peopleCount <= 10){
+      if (_peopleCount < 10){
         _message = 'ENTRADA AUTORIZADA';
       }
   });
@@ -87,13 +92,22 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(onPressed: _incrementPeople,
-              child: Text('entrar', style: TextStyle(color: Colors.white,),),),
-              TextButton(onPressed: _decrementPeople,
-              child: Text('sair', style:TextStyle(color: Colors.white,)))
-            ]
-          )
-          ,
+              ElevatedButton(onPressed: _incrementPeople,
+              child: Text('entrar',),),
+              ElevatedButton(onPressed: _decrementPeople,
+              child: Text('sair',)),
+            ],),
+
+            const SizedBox(height: 20),
+            Text(
+              'Botão ENTRAR foi pressionado: $_entrarPressCount vezes',
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              'Botão SAIR foi pressionado: $_sairPressCount vezes',
+              style: const TextStyle(color: Colors.white),
+              )
+          
         ],),
     );
   }
