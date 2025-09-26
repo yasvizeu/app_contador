@@ -36,18 +36,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _peopleCount = 0;
-
+  String _message = 'Pode entrar';
 
   void _incrementPeople(){
     setState(() {
       _peopleCount++;
+      if (_peopleCount > 10){
+        _message = 'ENTRADA PROIBIDA';
+        
+      } else {
+        _message = 'Pode entrar';
+      }
     });
   }
 
   void _decrementPeople(){
     setState(() {
-      _peopleCount--;
-    });
+      if (_peopleCount>0){
+        _peopleCount--;
+      }
+      if (_peopleCount <= 10){
+        _message = 'Pode entrar';
+      }
+  });
   }
 
   @override
@@ -60,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Pode Entrar!',
+          Text('$_message',
           style: TextStyle(
             fontSize:30,
             color: Colors.white,
