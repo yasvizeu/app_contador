@@ -36,7 +36,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _peopleCount = 0;
-  String _message = 'Pode entrar';
+  String _message = 'ENTRADA AUTORIZADA';
 
   void _incrementPeople(){
     setState(() {
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         _message = 'ENTRADA PROIBIDA';
         
       } else {
-        _message = 'Pode entrar';
+        _message = 'ENTRADA AUTORIZADA';
       }
     });
   }
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         _peopleCount--;
       }
       if (_peopleCount <= 10){
-        _message = 'Pode entrar';
+        _message = 'ENTRADA AUTORIZADA';
       }
   });
   }
